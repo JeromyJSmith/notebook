@@ -1,4 +1,5 @@
 """Version info for notebook."""
+
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 import re
@@ -27,13 +28,10 @@ VersionInfo = namedtuple("VersionInfo", ["major", "minor", "micro", "releaseleve
 
 version_info = VersionInfo(
     *[
-        field
-        for field in (
-            int(_version_fields["major"]),
-            int(_version_fields["minor"]),
-            int(_version_fields["micro"]),
-            _version_fields["releaselevel"] or "",
-            _version_fields["serial"] or "",
-        )
+        int(_version_fields["major"]),
+        int(_version_fields["minor"]),
+        int(_version_fields["micro"]),
+        _version_fields["releaselevel"] or "",
+        _version_fields["serial"] or "",
     ]
 )

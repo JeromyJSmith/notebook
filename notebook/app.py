@@ -68,9 +68,9 @@ class NotebookBaseHandler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, Jup
         try:
             # Remove the server_root from pref dir
             if self.serverapp.preferred_dir != server_root:
-                page_config["preferredPath"] = "/" + os.path.relpath(
-                    self.serverapp.preferred_dir, server_root
-                )
+                page_config[
+                    "preferredPath"
+                ] = f"/{os.path.relpath(self.serverapp.preferred_dir, server_root)}"
             else:
                 page_config["preferredPath"] = "/"
         except Exception:
@@ -96,7 +96,7 @@ class NotebookBaseHandler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, Jup
         for name in config.trait_names():
             if not name.endswith("_url"):
                 continue
-            full_name = _camelCase("full_" + name)
+            full_name = _camelCase(f"full_{name}")
             full_url = getattr(app, name)
             if not is_url(full_url):
                 # Relative URL will be prefixed with base_url
@@ -120,7 +120,7 @@ class RedirectHandler(NotebookBaseHandler):
     @web.authenticated
     def get(self):
         """Get the redirect url."""
-        return self.redirect(self.base_url + "tree")
+        return self.redirect(f"{self.base_url}tree")
 
 
 class TreeHandler(NotebookBaseHandler):

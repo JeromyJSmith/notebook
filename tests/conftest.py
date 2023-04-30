@@ -100,7 +100,7 @@ def make_notebook_app(  # noqa PLR0913
 
     # Create the federated extensions
     for name in ["apputils-extension", "codemirror-extension"]:
-        target_name = name + "-federated"
+        target_name = f"{name}-federated"
         target = pathlib.PurePath(str(labextensions_dir), "@jupyterlab", target_name)
         src = pathlib.PurePath(test_data, "schemas", "@jupyterlab", name)
         dst = target / "schemas" / "@jupyterlab" / target_name
